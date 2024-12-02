@@ -1,0 +1,32 @@
+function calculateSecondMonday(inputDate) {
+  // Convert the input date to a Date object
+  const inputDateObj = new Date(inputDate);
+
+  // Add one month to the input date
+  const nextMonth = new Date(inputDateObj.setMonth(inputDateObj.getMonth() + 1));
+
+  // Get the first day of the next month
+  const firstDayOfNextMonth = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), 1);
+
+  // Calculate the second Monday
+  const secondMonday = new Date(firstDayOfNextMonth.getTime() + 14 * 24 * 60 * 60 * 1000);
+  secondMonday.setDate(secondMonday.getDate() - (secondMonday.getDay() - 1));
+
+  // Format the date as desired (e.g., YYYY-MM-DD)
+  const formattedDate = secondMonday.toISOString().split('T')[0];
+
+  return formattedDate;
+}
+
+// Get references to HTML elements
+const inputDateElement = document.getElementById("inputDate");
+const calculateButton = document.getElementById("calculateButton");
+const resultElement = document.getElementById("result");
+
+// Add event listener to the button
+calculateButton.addEventListener("click", () => {
+  const inputDate = inputDateElement.value;
+  const secondMonday = calculateSecondMonday(inputDate);
+  resultElement.textContent = `Second Monday: ${secondMonday}`;
+});
+          echo test, and deploy your project.
